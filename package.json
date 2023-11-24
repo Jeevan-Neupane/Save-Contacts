@@ -5,9 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "client": "npm run dev --prefix client",
+    "client": "npm run dev --prefix frontend",
     "server": "nodemon -r dotenv/config  --experimental-json-modules src/index.js",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run  client\""
   },
   "keywords": [],
   "author": "",

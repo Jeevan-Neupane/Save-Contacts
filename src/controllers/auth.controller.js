@@ -89,20 +89,20 @@ class UserControllers {
             const user = await User.findOne({ email });
 
             if (!user) {
-                return res.json({
+                return res.status(404).json({
                     message: "User Doesn't exist"
                 })
             }
 
-            const validatePassword = user.isPasswordCorrect(password);
-
+            const validatePassword = await user.isPasswordCorrect(password);
+            console.log(validatePassword);
 
             if (!validatePassword) {
                 return res.status(404).json({
                     message: "Password is incorrect"
                 })
             }
-            
+
 
             const token = await user.generateToken();
 
