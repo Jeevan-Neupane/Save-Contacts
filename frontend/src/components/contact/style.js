@@ -1,9 +1,20 @@
 import styled from 'styled-components';
+import { tabletLandScape } from '../../styles/responsive';
 
 export const FormContainer = styled.div`
   max-width: 40rem;
   background-color:${props => props.theme.component};
   padding:2rem;
+  position:sticky;
+top:100px;
+
+${tabletLandScape({
+  maxWidth: "100%",
+  position:"static"
+})}
+
+
+
 `;
 
 export const FormGroup = styled.div`
@@ -22,8 +33,8 @@ export const Input = styled.input`
   font-size: 1.6rem;
   background-color:${props => props.theme.background};
   outline:none;
-  color:${props=>props.theme.text};
-  border:1px solid ${props=>props.theme.border};
+  color:${props => props.theme.text};
+  border:1px solid ${props => props.theme.border};
 `;
 
 export const RadioButtonGroup = styled.div`
@@ -45,11 +56,12 @@ export const RadioButton = styled.input`
 export const Button = styled.button`
   padding: 10px 15px;
   font-size: 16px;
-  color: ${props=>props.theme.link};
+  color: ${props => props.theme.link};
   border: none;
   cursor: pointer;
   background-color:${props => props.theme.specialText};
   font-weight:600;
+  width:100%;
 `;
 export const ErrorMessage = styled.p`
 

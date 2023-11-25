@@ -1,15 +1,27 @@
 import styled from "styled-components";
+import { mobileLandScape, tablet } from "../../styles/responsive";
 
 export const BarContainer = styled.div`
 display: flex;
 align-items:center;
 background-color:${props => props.theme.component};
 padding:1rem;
+
+
+
 `
 
 
 export const SearchBarDiv = styled.form`
 width:60%;
+
+${tablet({
+  width:"50%"
+})}
+
+${mobileLandScape({
+  width:"45%"
+})}
 `
 
 export const Search = styled.input`
@@ -36,6 +48,9 @@ export const ViewDiv = styled.div`
 margin-left:2rem;
 display: flex;
 gap:1rem;
+${tablet({
+  gap:".3rem"
+})}
 
 `
 
@@ -50,10 +65,18 @@ border:1px solid ${props => props.theme.border};
 font-size:1.6rem;
 padding:.8rem 1rem;
 color:${props => props.theme.text};
+${tablet({
+  fontSize:"1.2rem"
+})}
+
+
 `
 
 
-export const Options = styled.option``
+export const Options = styled.option`
+
+
+`
 
 
 

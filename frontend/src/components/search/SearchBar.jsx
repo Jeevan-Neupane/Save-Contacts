@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   BarContainer,
   FilterDiv,
@@ -12,14 +12,22 @@ import {
 } from "./style";
 import { FaTh, FaList } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { changeView } from "../../store/slice/filterSlice";
+import {
+  changeView,
+  searchProducts,
+  setSearchQuery,
+  setSortingOrder,
+  sortContacts,
+} from "../../store/store";
+
 function SearchBar() {
   const dispatch = useDispatch();
   const view = useSelector((state) => {
-    return state.filter.view;
+    return state.contacts.view;
   });
-
-  console.log(view);
+  const searchValue = useSelector((state) => {
+    return state.contacts.searchQuery;
+  });
   const options = [
     {
       name: "Select Order",
@@ -39,12 +47,24 @@ function SearchBar() {
     },
   ];
 
+  const arrangeOrder = (e) => {
+    dispatch(setSortingOrder(e.target.value));
+    dispatch(sortContacts());
+  };
+  const searchContacts = (e) => {
+    dispatch(setSearchQuery(e.target.value));
+    dispatch(searchProducts(e.target.value));
+    dispatch(sortContacts());
+  };
   return (
     <BarContainer>
+ 
       <SearchBarDiv>
         <Search
           type='text'
           placeholder='Enter name...'
+          onChange={searchContacts}
+          value={searchValue}
         />
       </SearchBarDiv>
 
@@ -68,7 +88,7 @@ function SearchBar() {
           </IconButton>
         </ViewDiv>
         <SelectDiv>
-          <Select>
+          <Select onChange={arrangeOrder}>
             {options.map((option) => {
               return (
                 <Options

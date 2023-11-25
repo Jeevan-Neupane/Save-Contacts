@@ -17,6 +17,7 @@ import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import LoadingButton from "../loading/LoadingButton";
 import { useNavigate } from "react-router-dom";
+import { LoginHeading } from "../login/style";
 
 const SignupForm = () => {
   const {
@@ -66,6 +67,7 @@ const SignupForm = () => {
   const password = watch("password", "");
   return (
     <FormContainer>
+      <LoginHeading>Sign Up </LoginHeading>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormGroup>
           <Label>Username</Label>

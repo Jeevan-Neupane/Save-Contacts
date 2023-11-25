@@ -34,3 +34,67 @@ export const LoaderButtonContainer = styled.span`
   }
 } 
 `
+
+export const LoadingImageDiv = styled.div`
+height:2rem;
+width:2rem;
+`
+
+export const LoadingImg = styled.img`
+height:100%;
+width:100%;
+
+`
+
+export const BigLoaderDivStyle = styled.div`
+
+height:100vh;
+width:100vw;
+display: flex;
+align-items:center;
+justify-content:center;
+.loader {
+  width: calc(100px - 24px);
+  height: 50px;
+  position: relative;
+  animation: flippx 2s infinite linear;
+}
+.loader:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #FFF;
+  transform-origin: -24px 50%;
+  animation: spin 1s infinite linear;
+}
+.loader:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50% , -50%);
+  background: #fff;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+@keyframes flippx {
+  0%, 49% {
+    transform: scaleX(1);
+  }
+  50%, 100% {
+    transform: scaleX(-1);
+  }
+}
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+      
+`

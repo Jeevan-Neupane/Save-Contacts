@@ -16,36 +16,17 @@ import { useEffect, useRef, useState } from "react";
 
 import { useLocation } from "react-router-dom";
 import {
+  removeContacts,
   removeToken,
   removeTokenLocalStorage,
   removeUser,
 } from "../../store/store";
+import Swal from "sweetalert2";
 
 function Header() {
-  const [scroll, setscroll] = useState(0);
-  const [show, setShow] = useState(true);
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.user.user);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      let presentScroll = window.scrollY;
-      if (scroll > 0) {
-        setShow(false);
-      }
-      if (presentScroll - scroll < 0) {
-        setShow(true);
-      }
-
-      setscroll(presentScroll);
-    };
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [scroll]);
 
   const navData = [
     {
@@ -74,7 +55,7 @@ function Header() {
   };
 
   return (
-    <Nav show={show}>
+    <Nav>
       <NavWrapper>
         <Logo>
           <LogoText to='/'>
@@ -99,15 +80,42 @@ function Header() {
               );
             })}
 
-            <LogoutButton
-              onClick={() => {
-                dispatch(removeUser());
-                dispatch(removeToken());
-                dispatch(removeTokenLocalStorage());
-              }}
-            >
-              Logout
-            </LogoutButton>
+            {user && (
+              <LogoutButton
+                onClick={() => {
+                  Swal.fire({
+                    title: "Are you sure?",
+                    text: "Do you want to logout?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Logged Out!",
+                    background: "#001e2b",
+                    color: "#fff",
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      dispatch(removeUser());
+                      dispatch(removeToken());
+                      dispatch(removeTokenLocalStorage());
+                      dispatch(removeContacts());
+                      Swal.fire({
+                        title: "Log Out!",
+                        text: "You are logged out",
+                        icon: "success",
+                        showConfirmButton: false,
+                        timer: 1500,
+                        timerProgressBar: true,
+                        background: "#001e2b",
+                        color: "#fff",
+                      });
+                    }
+                  });
+                }}
+              >
+                Logout
+              </LogoutButton>
+            )}
           </NavItems>
         </DesktopNav>
       </NavWrapper>

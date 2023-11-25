@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { WrapperContainer } from "../../styles/Container";
+import { tablet } from "../../styles/responsive";
 
 
 const Nav = styled.nav`
@@ -11,13 +12,7 @@ top:0;
 left:0;
 right:0;
 height:60px;
-transform:translateY(${props => {
-        if (props.show) {
-            return "0px"
-        } else {
-            return "-60px"
-        }
-    }});
+
 display: flex;
 align-items:center;
 justify-content:center;
@@ -58,7 +53,9 @@ display: flex;
 gap:7rem;
 transition:display .2s ease-in-out;
 
-
+${tablet({
+ gap:"4rem"
+})}
 align-items:center;
 
 

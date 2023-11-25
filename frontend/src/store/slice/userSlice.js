@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     token: null,
-    user: null
+    user: null,
+    status: false
 }
 
 
@@ -32,9 +33,11 @@ const userSlice = createSlice({
         },
         setUser: (state, action) => {
             state.user = action.payload;
+            state.status=true;
         },
         removeUser: (state, action) => {
             state.user = null;
+            state.status=false;
         }
 
 

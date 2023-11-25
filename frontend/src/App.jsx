@@ -20,6 +20,10 @@ import {
   useGetUserQuery,
 } from "./store/store";
 import { addContacts } from "./store/slice/contactSlice";
+import EditPage from "./pages/EditPage";
+import AuthLayout from "./layout/AuthLayout";
+import NotFoundPage from "./components/404page/NotFoundPage";
+import BigLoading from "./components/loading/BigLoading";
 
 function App() {
   const dispatch = useDispatch();
@@ -46,7 +50,6 @@ function App() {
 
   useEffect(() => {
     if (contacts) {
-      console.log(contacts.persons);
       dispatch(addContacts(contacts.persons));
     }
   }, [contacts]);
@@ -58,22 +61,50 @@ function App() {
       >
         <Route
           index
-          element={<HomePage />}
+          element={
+            <AuthLayout authentication={false}>
+              <HomePage />
+            </AuthLayout>
+          }
         />
         <Route
           path='/login'
-          element={<LoginPage />}
+          element={
+            <AuthLayout authentication={false}>
+              <LoginPage />
+            </AuthLayout>
+          }
         />
         <Route
           path='/signup'
-          element={<SignupPage />}
+          element={
+            <AuthLayout authentication={false}>
+              <SignupPage />
+            </AuthLayout>
+          }
+        />
+        <Route
+          path='/edit/:id'
+          element={
+            <AuthLayout authentication={true}>
+              <EditPage />
+            </AuthLayout>
+          }
+        />
+        <Route
+          path='*'
+          element={<NotFoundPage />}
         />
       </Route>
     )
   );
   return (
     <ThemeProvider theme={darkThemeColors}>
-      <RouterProvider router={router} />
+      {isLoading || contactsLoading ? (
+        <BigLoading />
+      ) : (
+        <RouterProvider router={router} />
+      )}
       <GlobalStyle />
     </ThemeProvider>
   );

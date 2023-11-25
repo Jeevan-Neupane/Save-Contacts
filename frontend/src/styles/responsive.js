@@ -1,6 +1,6 @@
 import { css } from "styled-components";
 
-export const computer = (props) => {
+export const largeDesktop = (props) => {
     return css`
     @media (max-width:1440px) {
         ${props}
@@ -8,6 +8,13 @@ export const computer = (props) => {
     `
 }
 export const laptop = (props) => {
+    return css`
+    @media (max-width:1280px) {
+        ${props}
+    }
+    `
+}
+export const tabletLandScape = (props) => {
     return css`
     @media (max-width:1024px) {
         ${props}
@@ -21,16 +28,16 @@ export const tablet = (props) => {
     }
     `
 }
-export const mobile = (props) => {
+export const mobileLandScape = (props) => {
     return css`
-    @media (max-width:576px) {
+    @media (max-width:480px) {
         ${props}
     }
     `
 }
-export const smallMobile = (props) => {
+export const mobile = (props) => {
     return css`
-    @media (max-width:450px) {
+    @media (max-width:350px) {
         ${props}
     }
     `

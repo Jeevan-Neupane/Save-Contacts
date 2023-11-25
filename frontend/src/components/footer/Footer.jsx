@@ -14,6 +14,7 @@ import {
   AiFillLinkedin,
   AiFillGithub,
 } from "react-icons/ai";
+import { FaRegUserCircle } from "react-icons/fa";
 function Footer() {
   const footerLinks = [
     "Terms of Use",
@@ -53,10 +54,10 @@ function Footer() {
             <AiFillTwitterCircle />
           </Icon>
           <Icon
-            href='https://www.instagram.com/jeevan.neupane03/'
+            href='https://jeevanneupane.com.np'
             target='_blank'
           >
-            <AiOutlineInstagram />
+            <FaRegUserCircle />
           </Icon>
           <Icon
             href='https://www.linkedin.com/in/jeevan-neupane-16a407258/'
